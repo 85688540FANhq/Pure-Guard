@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details - Pure Guard Water Purifier</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <div class="logo">
+                <img src="images/2.png" alt="Pure Guard Logo" class="logo-image">
+                <span class="logo-text">Pure Guard</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html#features">Features</a>
+                <a href="index.html#products">Products</a>
+                <a href="index.html#about">About</a>
+                <a href="index.html#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <a href="index.html" class="back-button">
+        <span class="back-icon">←</span>
+        <span class="back-text">Back to Home</span>
+    </a>
+
+    <section class="product-detail">
+        <div class="product-detail-container">
+            <div class="product-gallery">
+                <div class="main-image">
+                    <img src="images/1.png" alt="Water Purifier">
+                    <div class="image-decoration circle"></div>
+                    <div class="image-highlight"></div>
+                </div>
+                <div class="thumbnail-images">
+                    <img src="images/1.png" alt="View 1" class="active">
+                    <img src="images/3.png" alt="View 2">
+                    <img src="images/4.png" alt="View 3">
+                </div>
+            </div>
+            <div class="product-info-detailed">
+                <div class="product-header">
+                    <h1>Premium Water Purifier</h1>
+                    <div class="price-tag">From <span>RM 299</span></div>
+                </div>
+                <div class="product-specs">
+                    <h3>Key Features</h3>
+                    <ul>
+                        <li><span class="icon">✓</span> Five-stage filtration system</li>
+                        <li><span class="icon">✓</span> 99.99% bacteria removal rate</li>
+                        <li><span class="icon">✓</span> 304 stainless steel construction</li>
+                        <li><span class="icon">✓</span> Easy installation</li>
+                        <li><span class="icon">✓</span> 1-year warranty</li>
+                    </ul>
+                </div>
+                <div class="product-description">
+                    <h3>Product Description</h3>
+                    <p>Experience pure and healthy water with our advanced water purification system. The five-stage filtration ensures removal of harmful substances while maintaining essential minerals.</p>
+                </div>
+                <div class="purchase-options">
+                    <div class="option-group">
+                        <label>Select Model</label>
+                        <select class="model-select">
+                            <option value="standard">Standard Model - RM 299</option>
+                            <option value="premium">Premium Model - RM 499</option>
+                        </select>
+                    </div>
+                    <div class="option-group">
+                        <label>Quantity</label>
+                        <div class="quantity-selector">
+                            <button class="quantity-btn minus">−</button>
+                            <input type="number" value="1" min="1" class="quantity-input">
+                            <button class="quantity-btn plus">+</button>
+                        </div>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="add-to-cart">
+                            <span class="icon">🛒</span>
+                            Add to Cart
+                        </button>
+                        <a href="#contact" class="buy-now">Buy Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // 滚动动画
+        function handleIntersection(entries, observer) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }
+
+        const observer = new IntersectionObserver(handleIntersection, {
+            threshold: 0.1
+        });
+
+        document.querySelectorAll('.fade-in').forEach(element => {
+            observer.observe(element);
+        });
+
+        // 数量选择器功能
+        const minusBtn = document.querySelector('.minus');
+        const plusBtn = document.querySelector('.plus');
+        const quantityInput = document.querySelector('.quantity-input');
+
+        minusBtn.addEventListener('click', () => {
+            const currentValue = parseInt(quantityInput.value);
+            if (currentValue > 1) {
+                quantityInput.value = currentValue - 1;
+            }
+        });
+
+        plusBtn.addEventListener('click', () => {
+            const currentValue = parseInt(quantityInput.value);
+            quantityInput.value = currentValue + 1;
+        });
+
+        // 缩略图切换功能
+        const thumbnails = document.querySelectorAll('.thumbnail-images img');
+        const mainImage = document.querySelector('.main-image img');
+
+        thumbnails.forEach(thumb => {
+            thumb.addEventListener('click', () => {
+                thumbnails.forEach(t => t.classList.remove('active'));
+                thumb.classList.add('active');
+                mainImage.src = thumb.src;
+            });
+        });
+    </script>
+</body>
+</html> 
